@@ -1,6 +1,7 @@
 package cybersoft.example.cozastore_java21.entity;
 
 import jakarta.persistence.*;
+import cybersoft.example.cozastore_java21.entity.*;
 import java.util.Set;
 
 @Entity(name = "tag")

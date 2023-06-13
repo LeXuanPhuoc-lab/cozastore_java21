@@ -1,8 +1,8 @@
 package cybersoft.example.cozastore_java21.entity;
 
-
 import cybersoft.example.cozastore_java21.entity.ids.CategoryTagIds;
 import jakarta.persistence.*;
+
 
 @Entity(name = "category_tag")
 public class CategoryTag {

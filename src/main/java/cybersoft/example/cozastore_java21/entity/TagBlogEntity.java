@@ -2,7 +2,6 @@ package cybersoft.example.cozastore_java21.entity;
 
 import cybersoft.example.cozastore_java21.entity.ids.TagBlogIds;
 import jakarta.persistence.*;
-
 @Entity(name = "tag_blog")
 public class TagBlogEntity {
 

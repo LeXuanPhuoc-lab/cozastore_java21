@@ -1,6 +1,12 @@
 package cybersoft.example.cozastore_java21.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import cybersoft.example.cozastore_java21.entity.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.Set;
 
 @Entity(name = "user")
@@ -10,19 +16,26 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "username is required")
     @Column(name = "username")
     private String username;
 
+    @NotBlank(message = "password is required")
     @Column(name = "password")
     private String password;
 
+   // @NotBlank(message = "email is required")
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @NotEmpty(message = "Email cannot be empty")
     @Column(name = "email")
     private String email;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<BlogEntity> blogs;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<OrderEntity> orders;
 
     public Set<OrderEntity> getOrders() {
