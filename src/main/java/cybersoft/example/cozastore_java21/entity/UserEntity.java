@@ -1,41 +1,48 @@
-package cybersoft.example.cozastore_java21.entity2;
+package cybersoft.example.cozastore_java21.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import cybersoft.example.cozastore_java21.entity.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.Set;
 
-@Entity(name="user")
+@Entity(name = "user")
 public class UserEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="username")
+    @NotBlank(message = "username is required")
+    @Column(name = "username")
     private String username;
 
-    @Column(name="password")
+    @NotBlank(message = "password is required")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="email")
+   // @NotBlank(message = "email is required")
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @NotEmpty(message = "Email cannot be empty")
+    @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private Set<BlogEntity> blogs;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Set<OrderEntity> orders;
 
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private Set<BlogEntity> blogEntities;
-
-    public UserEntity() {
+    public Set<OrderEntity> getOrders() {
+        return orders;
     }
 
-    public UserEntity(int id, String username, String password, String email, Set<OrderEntity> orders) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
+    public void setOrders(Set<OrderEntity> orders) {
         this.orders = orders;
     }
 
@@ -71,11 +78,11 @@ public class UserEntity {
         this.email = email;
     }
 
-    public Set<OrderEntity> getOrders() {
-        return orders;
+    public Set<BlogEntity> getBlogs() {
+        return blogs;
     }
 
-    public void setOrders(Set<OrderEntity> orders) {
-        this.orders = orders;
+    public void setBlogs(Set<BlogEntity> blogs) {
+        this.blogs = blogs;
     }
 }

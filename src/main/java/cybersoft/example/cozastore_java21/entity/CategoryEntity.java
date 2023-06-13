@@ -1,34 +1,31 @@
-package cybersoft.example.cozastore_java21.entity2;
+package cybersoft.example.cozastore_java21.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
-@Entity(name="category")
+@Entity(name = "category")
 public class CategoryEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "category")
-    @JsonIgnore
-    private Set<ProductEntity> products;
+    private Set<CategoryTag> categoryTags;
 
     @OneToMany(mappedBy = "category")
-    @JsonIgnore
-    private Set<CategoryEntity> categoryEntities;
+    private Set<ProductEntity> products;
 
-    public CategoryEntity(int id, String name, Set<ProductEntity> products) {
-        this.id = id;
-        this.name = name;
-        this.products = products;
+    public Set<CategoryTag> getCategoryTags() {
+        return categoryTags;
     }
 
-    public CategoryEntity() {
+    public void setCategoryTags(Set<CategoryTag> categoryTags) {
+        this.categoryTags = categoryTags;
     }
 
     public int getId() {
@@ -53,13 +50,5 @@ public class CategoryEntity {
 
     public void setProducts(Set<ProductEntity> products) {
         this.products = products;
-    }
-
-    public Set<CategoryEntity> getCategoryEntities() {
-        return categoryEntities;
-    }
-
-    public void setCategoryEntities(Set<CategoryEntity> categoryEntities) {
-        this.categoryEntities = categoryEntities;
     }
 }

@@ -1,29 +1,20 @@
-package cybersoft.example.cozastore_java21.entity2;
+package cybersoft.example.cozastore_java21.entity;
 
 import jakarta.persistence.*;
 
 import java.util.Set;
 
-@Entity(name="color")
+@Entity(name = "color")
 public class ColorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "color")
     private Set<ProductEntity> products;
-
-    public ColorEntity(int id, String name, Set<ProductEntity> products) {
-        this.id = id;
-        this.name = name;
-        this.products = products;
-    }
-
-    public ColorEntity() {
-    }
 
     public int getId() {
         return id;
@@ -49,4 +40,3 @@ public class ColorEntity {
         this.products = products;
     }
 }
-
