@@ -21,7 +21,7 @@ public class JWTHelper {
     // SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     // String strKey = Encoders.BASE64.encode(key.getEncoded());
 
-    public String generateTokent(String data){
+    public String generateToken(String data){
         Key key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
 
         String token = Jwts.builder()

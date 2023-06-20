@@ -33,7 +33,7 @@ public class JwtFilter extends OncePerRequestFilter {
             String header = request.getHeader("Authorization");
 
             if(header.startsWith("Brear ")){
-                String token = header.substring(7);
+                String token = header.substring(8);
                 Claims claims = jwtHelper.decodeToken(token);
 
                 if(claims != null){

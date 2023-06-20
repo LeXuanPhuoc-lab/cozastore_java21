@@ -1,6 +1,7 @@
 package cybersoft.example.cozastore_java21.service;
 
 import cybersoft.example.cozastore_java21.entity.UserEntity;
+import cybersoft.example.cozastore_java21.exception.CustomException;
 import cybersoft.example.cozastore_java21.payload.request.SignupRequest;
 import cybersoft.example.cozastore_java21.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService{
             userRepository.save(user);
             isSucess=true;
         }catch(Exception e){
+            throw new CustomException("Loi them user" + e.getMessage());
         }
         return isSucess;
     }

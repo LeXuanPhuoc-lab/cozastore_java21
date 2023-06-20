@@ -37,7 +37,8 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests() //Qui dinh lai cac rule lien quan den chung thuc cho link duoc goi
-                    .requestMatchers("/signin","/signup").permitAll()
+                    .requestMatchers("/signin","/signup","/demo/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
 //                .httpBasic()
 //                .and()
